@@ -42,7 +42,7 @@ import org.catrobat.paintroid.ui.viewholder.TopBarViewHolder
 import java.util.ArrayDeque
 import java.util.Deque
 
-class LineTool(
+class LineToolCopy(
     private val brushToolOptionsView: BrushToolOptionsView,
     contextCallback: ContextCallback,
     toolOptionsViewController: ToolOptionsViewController,

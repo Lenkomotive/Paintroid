@@ -172,7 +172,7 @@ class DefaultCommandManager(
         }
     }
 
-    private fun executeAllCommands() {
+    override fun executeAllCommands() {
         val layerCount = layerModel.layerCount
         val checkBoxes: MutableList<Boolean> = ArrayList(Collections.nCopies(layerCount, true))
 
@@ -381,6 +381,8 @@ class DefaultCommandManager(
     override fun setInitialStateCommand(command: Command) {
         initialStateCommand = command
     }
+
+    override fun getUndoCommandCount(): Int = undoCommandList.size
 
     private fun notifyCommandExecuted() {
         for (listener in commandListeners) {
