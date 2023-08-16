@@ -127,10 +127,10 @@ class LineToolTest {
     @Test
     fun testInternalStateHandMoveNullPoint() {
         tool.handleDown(PointF(1f, 1f))
-        tool.handleMove(null)
+        tool.handleMove(null, false)
         Assert.assertEquals(tool.currentCoordinate, null)
         val point = PointF(2f, 2f)
-        tool.handleMove(point)
+        tool.handleMove(point, false)
         Assert.assertEquals(tool.currentCoordinate, point)
     }
 
@@ -173,7 +173,7 @@ class LineToolTest {
     @UiThreadTest
     fun testIfPlusIsDisplayedAfterDrawingLine() {
         tool.handleDown(PointF(1f, 1f))
-        tool.handleMove(PointF(500f, 500f))
+        tool.handleMove(PointF(500f, 500f), false)
         tool.handleUp(PointF(500f, 500f))
         Assert.assertEquals(tool.currentCoordinate, null)
         Assert.assertEquals(tool.initialEventCoordinate, null)
@@ -191,7 +191,7 @@ class LineToolTest {
         val tap1 = PointF(7f, 7f)
         Mockito.`when`(toolOptionsViewController.isVisible).thenReturn(true)
         Mockito.`when`(viewMock.visibility).thenReturn(View.VISIBLE)
-        tool.handleMove(tap1)
+        tool.handleMove(tap1, true)
 
         Mockito.verify(toolOptionsViewController).slideUp(viewMock,
                                                           willHide = true,
@@ -208,7 +208,7 @@ class LineToolTest {
         val tap1 = PointF(7f, 7f)
         Mockito.`when`(toolOptionsViewController.isVisible).thenReturn(false)
         Mockito.`when`(viewMock.visibility).thenReturn(View.INVISIBLE)
-        tool.handleMove(tap1)
+        tool.handleMove(tap1, false)
         tool.handleUp(tap1)
 
         Mockito.verify(toolOptionsViewController).slideDown(viewMock,

@@ -36,7 +36,7 @@ interface Tool {
 
     fun handleDown(coordinate: PointF?): Boolean
 
-    fun handleMove(coordinate: PointF?): Boolean
+    fun handleMove(coordinate: PointF?, shouldAnimate: Boolean): Boolean
 
     fun handleUp(coordinate: PointF?): Boolean
 

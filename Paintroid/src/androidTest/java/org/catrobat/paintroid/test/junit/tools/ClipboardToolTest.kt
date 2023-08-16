@@ -121,7 +121,7 @@ class ClipboardToolTest {
         val initialY = tool!!.toolPosition.y
         InstrumentationRegistry.getInstrumentation().runOnMainSync {
             tool!!.handleDown(PointF(initialX, initialY))
-            tool!!.handleMove(PointF(initialX + 2, initialY + 3))
+            tool!!.handleMove(PointF(initialX + 2, initialY + 3), false)
         }
         Assert.assertEquals(initialX + 2, tool!!.toolPosition.x, Float.MIN_VALUE)
         Assert.assertEquals(initialY + 3, tool!!.toolPosition.y, Float.MIN_VALUE)
@@ -141,7 +141,7 @@ class ClipboardToolTest {
         val initialToolPositionX = tool!!.toolPosition.x
         val initialToolPositionY = tool!!.toolPosition.y
         tool!!.handleDown(PointF(initialToolPositionX, initialToolPositionY))
-        tool!!.handleMove(PointF(initialToolPositionX + 9, initialToolPositionY + 9))
+        tool!!.handleMove(PointF(initialToolPositionX + 9, initialToolPositionY + 9), false)
         tool!!.handleUp(PointF(initialToolPositionX + 9, initialToolPositionY + 9))
         Assert.assertEquals(tool!!.toolPosition.x, initialToolPositionX + 9, 0f)
         Assert.assertEquals(tool!!.toolPosition.y, initialToolPositionY + 9, 0f)

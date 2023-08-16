@@ -98,13 +98,13 @@ class ClippingToolIntegrationTest {
 
         mainActivity.runOnUiThread {
             toolReference.tool?.handleDown(middleLeft)
-            toolReference.tool?.handleMove(middlePoint1)
-            toolReference.tool?.handleMove(middleTop)
-            toolReference.tool?.handleMove(middlePoint2)
-            toolReference.tool?.handleMove(middleRight)
-            toolReference.tool?.handleMove(middlePoint3)
-            toolReference.tool?.handleMove(middleBot)
-            toolReference.tool?.handleMove(middlePoint4)
+            toolReference.tool?.handleMove(middlePoint1, false)
+            toolReference.tool?.handleMove(middleTop, false)
+            toolReference.tool?.handleMove(middlePoint2, false)
+            toolReference.tool?.handleMove(middleRight, false)
+            toolReference.tool?.handleMove(middlePoint3, false)
+            toolReference.tool?.handleMove(middleBot, false)
+            toolReference.tool?.handleMove(middlePoint4, false)
             toolReference.tool?.handleUp(middleLeft)
         }
 
@@ -159,13 +159,13 @@ class ClippingToolIntegrationTest {
 
         mainActivity.runOnUiThread {
             toolReference.tool?.handleDown(middleLeft)
-            toolReference.tool?.handleMove(middlePoint1)
-            toolReference.tool?.handleMove(middleTop)
-            toolReference.tool?.handleMove(middlePoint2)
-            toolReference.tool?.handleMove(middleRight)
-            toolReference.tool?.handleMove(middlePoint3)
-            toolReference.tool?.handleMove(middleBot)
-            toolReference.tool?.handleMove(middlePoint4)
+            toolReference.tool?.handleMove(middlePoint1, false)
+            toolReference.tool?.handleMove(middleTop, false)
+            toolReference.tool?.handleMove(middlePoint2, false)
+            toolReference.tool?.handleMove(middleRight, false)
+            toolReference.tool?.handleMove(middlePoint3, false)
+            toolReference.tool?.handleMove(middleBot, false)
+            toolReference.tool?.handleMove(middlePoint4, false)
             toolReference.tool?.handleUp(middleLeft)
         }
 
@@ -204,8 +204,8 @@ class ClippingToolIntegrationTest {
 
         mainActivity.runOnUiThread {
             toolReference.tool?.handleDown(middleTop)
-            toolReference.tool?.handleMove(middleLeft)
-            toolReference.tool?.handleMove(middleRight)
+            toolReference.tool?.handleMove(middleLeft, false)
+            toolReference.tool?.handleMove(middleRight, false)
             toolReference.tool?.handleUp(middleTop)
         }
 
@@ -237,13 +237,13 @@ class ClippingToolIntegrationTest {
 
         mainActivity.runOnUiThread {
             toolReference.tool?.handleDown(middleLeft)
-            toolReference.tool?.handleMove(middlePoint1)
-            toolReference.tool?.handleMove(middleTop)
-            toolReference.tool?.handleMove(middlePoint2)
-            toolReference.tool?.handleMove(middleRight)
-            toolReference.tool?.handleMove(middlePoint3)
-            toolReference.tool?.handleMove(middleBot)
-            toolReference.tool?.handleMove(middlePoint4)
+            toolReference.tool?.handleMove(middlePoint1, false)
+            toolReference.tool?.handleMove(middleTop, false)
+            toolReference.tool?.handleMove(middlePoint2, false)
+            toolReference.tool?.handleMove(middleRight, false)
+            toolReference.tool?.handleMove(middlePoint3, false)
+            toolReference.tool?.handleMove(middleBot, false)
+            toolReference.tool?.handleMove(middlePoint4, false)
             toolReference.tool?.handleUp(middleLeft)
         }
 
@@ -289,13 +289,13 @@ class ClippingToolIntegrationTest {
 
         mainActivity.runOnUiThread {
             toolReference.tool?.handleDown(middleLeft)
-            toolReference.tool?.handleMove(middlePoint1)
-            toolReference.tool?.handleMove(middleTop)
-            toolReference.tool?.handleMove(middlePoint2)
-            toolReference.tool?.handleMove(middleRight)
-            toolReference.tool?.handleMove(middlePoint3)
-            toolReference.tool?.handleMove(middleBot)
-            toolReference.tool?.handleMove(middlePoint4)
+            toolReference.tool?.handleMove(middlePoint1, false)
+            toolReference.tool?.handleMove(middleTop, false)
+            toolReference.tool?.handleMove(middlePoint2, false)
+            toolReference.tool?.handleMove(middleRight, false)
+            toolReference.tool?.handleMove(middlePoint3, false)
+            toolReference.tool?.handleMove(middleBot, false)
+            toolReference.tool?.handleMove(middlePoint4, false)
             toolReference.tool?.handleUp(middleLeft)
         }
 

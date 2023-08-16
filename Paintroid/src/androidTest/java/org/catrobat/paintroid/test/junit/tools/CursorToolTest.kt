@@ -197,7 +197,7 @@ class CursorToolTest {
         Assert.assertEquals(testCursorPosition.x.toDouble(), actualCursorPosition.x.toDouble(), Double.MIN_VALUE)
         Assert.assertEquals(testCursorPosition.y.toDouble(), actualCursorPosition.y.toDouble(), Double.MIN_VALUE)
         // e2
-        returnValue = toolToTest!!.handleMove(event2)
+        returnValue = toolToTest!!.handleMove(event2, false)
         val vectorCX = event2.x - event1.x
         val vectorCY = event2.y - event1.y
         testCursorPosition[testCursorPosition.x + vectorCX] = testCursorPosition.y + vectorCY

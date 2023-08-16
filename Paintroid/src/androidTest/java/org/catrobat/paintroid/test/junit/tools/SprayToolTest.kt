@@ -156,7 +156,7 @@ class SprayToolTest {
     @Test
     fun testHandleMoveDoesNothingButUpdateCoordinate() {
         val event = PointF(0f, 0f)
-        tool.handleMove(event)
+        tool.handleMove(event, false)
         Mockito.verify(commandManager, Mockito.never())
             .addCommand(ArgumentMatchers.any(Command::class.java))
         Assert.assertTrue(tool.sprayToolScope.isActive)
@@ -168,7 +168,7 @@ class SprayToolTest {
         val tap1 = PointF(7f, 7f)
         Mockito.`when`(toolOptionsViewController.isVisible).thenReturn(true)
         Mockito.`when`(viewMock.visibility).thenReturn(View.VISIBLE)
-        tool.handleMove(tap1)
+        tool.handleMove(tap1, true)
 
         Mockito.verify(toolOptionsViewController).slideUp(viewMock,
                                                             willHide = true,

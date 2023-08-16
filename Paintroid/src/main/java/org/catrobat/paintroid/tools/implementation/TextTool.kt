@@ -257,10 +257,10 @@ class TextTool(
          }
     }
 
-    override fun handleMove(coordinate: PointF?): Boolean {
+    override fun handleMove(coordinate: android.graphics.PointF?, shouldAnimate: kotlin.Boolean): Boolean {
         textToolOptionsView.hideKeyboard()
         hideTextToolLayout()
-        return super.handleMove(coordinate)
+        return super.handleMove(coordinate, false)
     }
 
     override fun handleUp(coordinate: PointF?): Boolean {

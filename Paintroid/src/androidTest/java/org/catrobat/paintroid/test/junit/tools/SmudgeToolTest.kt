@@ -96,7 +96,7 @@ class SmudgeToolTest {
             .thenReturn(Bitmap.createBitmap(200, 200, Bitmap.Config.ARGB_8888))
         val event = PointF(100f, 100f)
         Assert.assertFalse(tool.handleDown(event))
-        Assert.assertFalse(tool.handleMove(event))
+        Assert.assertFalse(tool.handleMove(event, false))
         Assert.assertFalse(tool.handleUp(event))
     }
 
@@ -104,7 +104,7 @@ class SmudgeToolTest {
     fun testExecutingSmudgeWhenBitmapHasColor() {
         val event = PointF(100f, 100f)
         Assert.assertTrue(tool.handleDown(event))
-        Assert.assertTrue(tool.handleMove(event))
+        Assert.assertTrue(tool.handleMove(event, false))
         Assert.assertTrue(tool.handleUp(event))
     }
 
@@ -113,7 +113,7 @@ class SmudgeToolTest {
         val event = PointF(100f, 100f)
         tool.handleDown(event)
         val event2 = PointF(110f, 110f)
-        tool.handleMove(event2)
+        tool.handleMove(event2, false)
         tool.handleUp(event2)
         val argument = ArgumentCaptor.forClass(SmudgePathCommand::class.java)
         Mockito.verify(commandManager).addCommand(argument.capture())
@@ -124,7 +124,7 @@ class SmudgeToolTest {
         val event = PointF(100f, 100f)
         tool.handleDown(event)
         val event2 = PointF(110f, 110f)
-        tool.handleMove(event2)
+        tool.handleMove(event2, false)
         tool.handleUp(event2)
         Assert.assertTrue(tool.pointArray.isEmpty())
     }

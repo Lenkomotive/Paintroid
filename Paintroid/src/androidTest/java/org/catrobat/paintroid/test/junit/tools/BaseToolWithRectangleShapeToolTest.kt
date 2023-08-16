@@ -139,7 +139,7 @@ class BaseToolWithRectangleShapeToolTest {
         val dragFromY = rectPosition.y - rectHeight / 2
         val dragToY = dragFromY + rectHeight + RESIZE_MOVE_DISTANCE
         toolToTest!!.handleDown(PointF(dragFromX, dragFromY))
-        toolToTest!!.handleMove(PointF(dragToX, dragToY))
+        toolToTest!!.handleMove(PointF(dragToX, dragToY), false)
         toolToTest!!.handleUp(PointF(dragToX, dragToY))
         val newWidth = toolToTest!!.boxWidth
         val newHeight = toolToTest!!.boxHeight
@@ -158,7 +158,7 @@ class BaseToolWithRectangleShapeToolTest {
         val dragFromY = rectPosition.y
         val dragToY = dragFromY + RESIZE_MOVE_DISTANCE
         toolToTest!!.handleDown(PointF(dragFromX, dragFromY))
-        toolToTest!!.handleMove(PointF(dragToX, dragToY))
+        toolToTest!!.handleMove(PointF(dragToX, dragToY), false)
         toolToTest!!.handleUp(PointF(dragToX, dragToY))
         val newWidth = toolToTest!!.boxWidth
         val newHeight = toolToTest!!.boxHeight
@@ -258,7 +258,7 @@ class BaseToolWithRectangleShapeToolTest {
 
         // try rotate right
         toolToTest!!.handleDown(topLeftRotationPoint)
-        toolToTest!!.handleMove(PointF(screenWidth / 2f, topLeftRotationPoint.y))
+        toolToTest!!.handleMove(PointF(screenWidth / 2f, topLeftRotationPoint.y), false)
         toolToTest!!.handleUp(PointF(screenWidth / 2f, topLeftRotationPoint.y))
         val newRotation = toolToTest!!.boxRotation
         Assert.assertThat(newRotation, Matchers.`is`(Matchers.greaterThan(rotation)))
@@ -276,7 +276,7 @@ class BaseToolWithRectangleShapeToolTest {
 
         // try rotate left
         toolToTest!!.handleDown(topLeftRotationPoint)
-        toolToTest!!.handleMove(PointF(topLeftRotationPoint.x, screenHeight / 2f))
+        toolToTest!!.handleMove(PointF(topLeftRotationPoint.x, screenHeight / 2f), false)
         toolToTest!!.handleUp(PointF(topLeftRotationPoint.x, screenHeight / 2f))
         val newRotation = toolToTest!!.boxRotation
         Assert.assertThat(newRotation, Matchers.`is`(Matchers.lessThan(rotation)))
@@ -306,7 +306,7 @@ class BaseToolWithRectangleShapeToolTest {
         var currentPosition: PointF? = topLeftRotationPoint
         var newPosition = PointF(topRightRotationPoint.x, topRightRotationPoint.y)
         toolToTest!!.handleDown(currentPosition)
-        toolToTest!!.handleMove(newPosition)
+        toolToTest!!.handleMove(newPosition, false)
         toolToTest!!.handleUp(newPosition)
         var newRotation = toolToTest!!.boxRotation
         Assert.assertEquals(
@@ -318,7 +318,7 @@ class BaseToolWithRectangleShapeToolTest {
         currentPosition = newPosition
         newPosition = PointF(bottomRightRotationPoint.x, bottomRightRotationPoint.y)
         toolToTest!!.handleDown(currentPosition)
-        toolToTest!!.handleMove(newPosition)
+        toolToTest!!.handleMove(newPosition, false)
         toolToTest!!.handleUp(newPosition)
         newRotation = toolToTest!!.boxRotation
         Assert.assertEquals(
@@ -330,7 +330,7 @@ class BaseToolWithRectangleShapeToolTest {
         currentPosition = newPosition
         newPosition = PointF(bottomLeftRotationPoint.x, bottomLeftRotationPoint.y)
         toolToTest!!.handleDown(currentPosition)
-        toolToTest!!.handleMove(newPosition)
+        toolToTest!!.handleMove(newPosition, false)
         toolToTest!!.handleUp(newPosition)
         newRotation = toolToTest!!.boxRotation
         Assert.assertEquals(
@@ -342,7 +342,7 @@ class BaseToolWithRectangleShapeToolTest {
         currentPosition = newPosition
         newPosition = PointF(topLeftRotationPoint.x, topLeftRotationPoint.y)
         toolToTest!!.handleDown(currentPosition)
-        toolToTest!!.handleMove(newPosition)
+        toolToTest!!.handleMove(newPosition, false)
         toolToTest!!.handleUp(newPosition)
         newRotation = toolToTest!!.boxRotation
         Assert.assertEquals("Rotation value should be 0 degree.", newRotation, 0f, Float.MIN_VALUE)
@@ -360,13 +360,13 @@ class BaseToolWithRectangleShapeToolTest {
         val topLeftRotationPoint = PointF(noRotationPoint.x + 1, noRotationPoint.y + 1)
         val destinationPoint = PointF(noRotationPoint.x + 10, noRotationPoint.y)
         toolToTest!!.handleDown(noRotationPoint)
-        toolToTest!!.handleMove(destinationPoint)
+        toolToTest!!.handleMove(destinationPoint, false)
         var newRotation = toolToTest!!.boxRotation
         Assert.assertEquals("Rectangle should not rotate.", newRotation, 0f, Float.MIN_VALUE)
-        toolToTest!!.handleMove(noRotationPoint)
+        toolToTest!!.handleMove(noRotationPoint, false)
         toolToTest!!.handleUp(noRotationPoint)
         toolToTest!!.handleDown(topLeftRotationPoint)
-        toolToTest!!.handleMove(destinationPoint)
+        toolToTest!!.handleMove(destinationPoint, false)
         toolToTest!!.handleUp(destinationPoint)
         newRotation = toolToTest!!.boxRotation
         Assert.assertNotEquals("Rectangle should rotate.", newRotation, 0)
@@ -394,7 +394,7 @@ class BaseToolWithRectangleShapeToolTest {
 
         // rotate right
         toolToTest!!.handleDown(topLeftRotationPoint)
-        toolToTest!!.handleMove(PointF(screenWidth / 2f, topLeftRotationPoint.y))
+        toolToTest!!.handleMove(PointF(screenWidth / 2f, topLeftRotationPoint.y), false)
         toolToTest!!.handleUp(PointF(screenWidth / 2f, topLeftRotationPoint.y))
         Assert.assertFalse(toolToTest!!.boxContainsPoint(topLeftCorner))
         Assert.assertTrue(toolToTest!!.boxContainsPoint(pointInRotatedRectangle))
@@ -405,7 +405,7 @@ class BaseToolWithRectangleShapeToolTest {
         val initialToolPositionX = toolToTest!!.toolPosition.x
         val initialToolPositionY = toolToTest!!.toolPosition.y
         toolToTest!!.handleDown(PointF(initialToolPositionX, initialToolPositionY))
-        toolToTest!!.handleMove(PointF(initialToolPositionX + 9, initialToolPositionY + 9))
+        toolToTest!!.handleMove(PointF(initialToolPositionX + 9, initialToolPositionY + 9), false)
         toolToTest!!.handleUp(PointF(initialToolPositionX + 9, initialToolPositionY + 9))
         Assert.assertEquals(toolToTest!!.toolPosition.x, initialToolPositionX + 9, 0f)
         Assert.assertEquals(toolToTest!!.toolPosition.y, initialToolPositionY + 9, 0f)

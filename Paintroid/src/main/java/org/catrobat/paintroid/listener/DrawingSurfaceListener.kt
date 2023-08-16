@@ -95,7 +95,7 @@ open class DrawingSurfaceListener(
         this.sharedPreferences = sharedPreferences
     }
 
-    private fun handleActionMove(currentTool: Tool?, event: MotionEvent) {
+    private fun handleActionMove(currentTool: Tool?, event: MotionEvent, shouldAnimate: Boolean) {
         val xOld: Float
         val yOld: Float
         if (event.pointerCount == 1) {
@@ -117,7 +117,7 @@ open class DrawingSurfaceListener(
                 }
             } else if (touchMode != TouchMode.PINCH) {
                 touchMode = TouchMode.DRAW
-                currentTool.handleMove(canvasTouchPoint)
+                currentTool.handleMove(canvasTouchPoint, shouldAnimate)
             }
             handleZoomWindowOnMove(currentTool, event)
         } else {
@@ -179,7 +179,11 @@ open class DrawingSurfaceListener(
                 currentTool?.handleDown(canvasTouchPoint)
                 handleZoomWindowOnTouch(currentTool, event)
             }
-            MotionEvent.ACTION_MOVE -> handleActionMove(currentTool, event)
+            MotionEvent.ACTION_MOVE -> {
+                var threshold = view.height / 4
+                var shouldAnimate = event.y < threshold || event.y > view.height - threshold;
+                handleActionMove(currentTool, event, shouldAnimate)
+            }
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                 if (touchMode == TouchMode.DRAW) {
                     val drawingTime = System.currentTimeMillis() - timerStartDraw

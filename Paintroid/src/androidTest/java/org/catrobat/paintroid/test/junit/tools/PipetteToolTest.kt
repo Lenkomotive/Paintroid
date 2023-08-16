@@ -95,7 +95,7 @@ class PipetteToolTest {
     @Test
     fun testHandleDown() {
         toolToTest!!.handleDown(PointF(X_COORDINATE_RED.toFloat(), 0f))
-        toolToTest!!.handleMove(PointF(X_COORDINATE_PART_TRANSPARENT.toFloat(), 0f))
+        toolToTest!!.handleMove(PointF(X_COORDINATE_PART_TRANSPARENT.toFloat(), 0f), false)
         val inOrderToolPaint = Mockito.inOrder(toolPaint)
         inOrderToolPaint.verify(toolPaint)!!.color = Color.RED
         inOrderToolPaint.verify(toolPaint)!!.color = -0x55555556
@@ -107,9 +107,9 @@ class PipetteToolTest {
     @Test
     fun testHandleMove() {
         toolToTest!!.handleDown(PointF(X_COORDINATE_RED.toFloat(), 0f))
-        toolToTest!!.handleMove(PointF((X_COORDINATE_RED + 1).toFloat(), 0f))
-        toolToTest!!.handleMove(PointF(X_COORDINATE_GREEN.toFloat(), 0f))
-        toolToTest!!.handleMove(PointF(X_COORDINATE_PART_TRANSPARENT.toFloat(), 0f))
+        toolToTest!!.handleMove(PointF((X_COORDINATE_RED + 1).toFloat(), 0f), false)
+        toolToTest!!.handleMove(PointF(X_COORDINATE_GREEN.toFloat(), 0f), false)
+        toolToTest!!.handleMove(PointF(X_COORDINATE_PART_TRANSPARENT.toFloat(), 0f), false)
         val inOrderToolPaint = Mockito.inOrder(toolPaint)
         inOrderToolPaint.verify(toolPaint)!!.color = Color.RED
         inOrderToolPaint.verify(toolPaint)!!.color = Color.TRANSPARENT

@@ -145,7 +145,7 @@ class BrushToolTest {
         val pathStub = PathStub()
         toolToTest!!.pathToDraw = pathStub
         toolToTest!!.handleDown(event1)
-        val returnValue = toolToTest!!.handleMove(event2)
+        val returnValue = toolToTest!!.handleMove(event2, false)
         Assert.assertTrue(returnValue)
         val stub = pathStub.getStub()
         Mockito.verify(stub).moveTo(ArgumentMatchers.anyFloat(), ArgumentMatchers.anyFloat())
@@ -156,7 +156,7 @@ class BrushToolTest {
     fun testShouldNotAddCommandOnMoveEvent() {
         val event = PointF(0f, 0f)
         toolToTest!!.handleDown(event)
-        val returnValue = toolToTest!!.handleMove(event)
+        val returnValue = toolToTest!!.handleMove(event, false)
         Assert.assertTrue(returnValue)
         Mockito.verify(commandManager, Mockito.never())!!.addCommand(ArgumentMatchers.any(Command::class.java))
     }
@@ -167,7 +167,7 @@ class BrushToolTest {
         val pathStub = PathStub()
         toolToTest!!.pathToDraw = pathStub
         toolToTest!!.handleDown(event)
-        val returnValue = toolToTest!!.handleMove(null)
+        val returnValue = toolToTest!!.handleMove(null, false)
         Assert.assertFalse(returnValue)
         Mockito.verify(pathStub.getStub(), Mockito.never()).quadTo(ArgumentMatchers.anyFloat(), ArgumentMatchers.anyFloat(), ArgumentMatchers.anyFloat(), ArgumentMatchers.anyFloat())
     }
@@ -187,7 +187,7 @@ class BrushToolTest {
         toolToTest!!.pathToDraw = pathStub
 
         toolToTest!!.handleDown(event1)
-        toolToTest!!.handleMove(event2)
+        toolToTest!!.handleMove(event2, false)
         val returnValue: Boolean = toolToTest!!.handleUp(event3)
 
         assertTrue(returnValue)
@@ -203,7 +203,7 @@ class BrushToolTest {
         val pathStub = PathStub()
         toolToTest!!.pathToDraw = pathStub
         toolToTest!!.handleDown(event)
-        toolToTest!!.handleMove(event)
+        toolToTest!!.handleMove(event, false)
         val returnValue = toolToTest!!.handleUp(null)
         Assert.assertFalse(returnValue)
         Mockito.verify(pathStub.getStub(), Mockito.never()).lineTo(ArgumentMatchers.anyFloat(), ArgumentMatchers.anyFloat())
@@ -225,7 +225,7 @@ class BrushToolTest {
         toolToTest!!.pathToDraw = pathStub
 
         toolToTest!!.handleDown(event)
-        toolToTest!!.handleMove(event1)
+        toolToTest!!.handleMove(event1, false)
         val returnValue = toolToTest!!.handleUp(event2)
 
         assertTrue(returnValue)
@@ -242,7 +242,7 @@ class BrushToolTest {
     fun testShouldNotAddCommandIfNoCoordinateOnUpEvent() {
         val event = PointF(0f, 0f)
         toolToTest!!.handleDown(event)
-        toolToTest!!.handleMove(event)
+        toolToTest!!.handleMove(event, false)
         val returnValue = toolToTest!!.handleUp(null)
         Assert.assertFalse(returnValue)
         Mockito.verify(commandManager, Mockito.never())!!.addCommand(ArgumentMatchers.any(Command::class.java))
@@ -282,7 +282,7 @@ class BrushToolTest {
         Mockito.`when`(workspace!!.contains(any<PointF>())).thenReturn(true)
         Mockito.`when`(toolPaint!!.paint).thenReturn(paint)
         val returnValue1 = toolToTest!!.handleDown(tap1)
-        val returnValue2 = toolToTest!!.handleMove(tap2)
+        val returnValue2 = toolToTest!!.handleMove(tap2, false)
         val returnValue3 = toolToTest!!.handleUp(tap3)
         Assert.assertTrue(returnValue1)
         Assert.assertTrue(returnValue2)
@@ -309,9 +309,9 @@ class BrushToolTest {
         val tap4 = PointF(7f, -MOVE_TOLERANCE + 0.1f)
         val tap5 = PointF(7f, 7f)
         toolToTest!!.handleDown(tap1)
-        toolToTest!!.handleMove(tap2)
-        toolToTest!!.handleMove(tap3)
-        toolToTest!!.handleMove(tap4)
+        toolToTest!!.handleMove(tap2, false)
+        toolToTest!!.handleMove(tap3, false)
+        toolToTest!!.handleMove(tap4, false)
         toolToTest!!.handleUp(tap5)
         Mockito.verify(commandManager)!!.addCommand(ArgumentMatchers.isA(PathCommand::class.java))
     }
